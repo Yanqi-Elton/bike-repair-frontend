@@ -14,10 +14,10 @@ body {
 }
 
 .hero {
-  background: linear-gradient(135deg, #0f172a, #2563eb);
+  background: linear-gradient(to right, #0f2c75, #2d5bdb);
   color: white;
-  padding: 80px 24px;
   text-align: center;
+  padding:  20px;
 }
 
 .badge {
@@ -32,6 +32,20 @@ body {
 .hero h1 {
   font-size: 48px;
   margin: 0 0 16px;
+}
+
+.logo {
+  width: 95%;
+  max-width: 1400px;
+
+  object-fit: cover;
+  border-radius: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .subtitle {
@@ -129,6 +143,11 @@ button {
   cursor: pointer;
 }
 
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 button:hover {
   background: #1d4ed8;
 }
