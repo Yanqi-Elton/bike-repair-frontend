@@ -27,7 +27,7 @@ function App() {
     price: "$100",
     flip: true,
     featured: true,
-    image: "/images/tuneup1.jpg",
+    image: "/images/tuneup.jpg",
     description: "Full check, brake and gear adjustment, quick inspection.",
     details: [
       "Everthing in Basic Tune-Up, plus:",
