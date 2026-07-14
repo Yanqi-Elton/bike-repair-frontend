@@ -127,6 +127,23 @@ function App() {
               ))}
             </div>
           </section>
+          <section className="booking-section">
+
+            <h2>Book a Repair</h2>
+
+            <p>
+              Need help with your bike?
+              Click below to send me a repair request.
+            </p>
+
+            <a
+              className="book-button"
+              href="mailto:eltonhuangyanqi@gmail.com?subject=Bike Repair Booking Request&body=Hi Elton,%0D%0A%0D%0AI would like to book a repair.%0D%0A%0D%0AName:%0D%0APhone:%0D%0ABike:%0D%0AService:%0D%0APreferred Date:%0D%0AProblem Description:"
+            >
+              📩 Book a Repair
+            </a>
+
+          </section>
         </>
       )}
 
