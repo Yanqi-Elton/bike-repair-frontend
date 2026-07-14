@@ -413,6 +413,26 @@ footer {
   }
 }
 
+/* booking section */
+.booking-section {
+  /* max-width: 900px; */
+  margin: 60px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.booking-section h2{
+  margin-bottom:15px;
+}
+
+.booking-section p{
+  color:#555;
+  font-size:18px;
+}
+
 .book-button{
   display:inline-block;
   margin-top:25px;
