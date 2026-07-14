@@ -412,3 +412,20 @@ footer {
     height: 260px;
   }
 }
+
+.book-button{
+  display:inline-block;
+  margin-top:25px;
+  padding:15px 35px;
+  background:#2563eb;
+  color:white;
+  text-decoration:none;
+  border-radius:999px;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.book-button:hover{
+  background:#1d4ed8;
+  transform:translateY(-3px);
+}
