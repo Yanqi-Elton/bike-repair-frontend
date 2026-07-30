@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function App() {
   const [page, setPage] = useState("home");
-  const [flippedCard, setFlippedCard] = useState(null);
+  const [selectedService, setSelectedService] = useState("");
   const services = [
     {
     name: "Basic Tune-Up",
@@ -18,6 +18,7 @@ function App() {
       "Tire pressure check",
       "Brake Pad Inspection and Sanding",
       "Bolt safety check",
+      "Headset and bottom bracket check",
       "Quick test ride"
     ]
     },
@@ -28,124 +29,308 @@ function App() {
     flip: true,
     featured: true,
     image: "/images/tuneup.jpg",
-    description: "Full check, brake and gear adjustment, quick inspection.",
+    description: "Full check, brake and gear adjustment, drivetrain cleaning, offer pickup service.",
     details: [
       "Everthing in Basic Tune-Up, plus:",
       "Wheel truing on the wheel truing stand",
       "Drivetrain complete cleaning",
+      "Headset and Bottom Bracket regreasing",
+      "Brake pad cleaning, sanding if needed",
     ]
     },
     // { name: "Advanced Tune-Up", price: "$100", description: "Full check, brake and gear adjustment, quick inspection." },
 
     { name: "Hydraulic Bleed", price: "$30", flip: false, description: "Remove air bubbles from hydraulic brake line." },
     { name: "Truing Wheel", price: "$20", flip: false,description: "Make sure the wheel is properly aligned." },
-    { name: "Housing Replacement", price: "$20", flip: false,description: "Changing brake housing or derailleur housing." },
+    { name: "Housing Replacement", price: "$20", flip: false,description: "Changing per brake housing or derailleur housing." },
     { name: "Brake Adjustment", price: "$10", flip: false,description: "Adjust front or rear brakes." },
     { name: "Gear Adjustment", price: "$15", flip: false, description: "Tune shifting for smoother riding." },
     { name: "Flat Repair", price: "$10", flip: false, description: "Replace new inner tube or inspect a flat tire." },
   ];
+  const featuredServices = services.filter((service) => service.featured);
+  const miniServices = services.filter((service) => !service.featured);
+  const handleContactSubmit = (event) => {
+  event.preventDefault();
 
+  const formData = new FormData(event.currentTarget);
+
+  const firstName = formData.get("firstName");
+  const lastName = formData.get("lastName");
+  const email = formData.get("email");
+  const phone = formData.get("phone");
+  const bikeType = formData.get("bikeType");
+  const service = formData.get("service");
+  const message = formData.get("message");
+
+  const subject = encodeURIComponent(
+      `Bike Repair Request from ${firstName} ${lastName}`
+    );
+
+    const body = encodeURIComponent(
+      `Hi Elton,
+
+  I would like to ask about a bicycle repair.
+
+  Name: ${firstName} ${lastName}
+  Email: ${email}
+  Phone: ${phone}
+  Bike type: ${bikeType}
+  Service requested: ${service}
+
+  Message:
+  ${message}`
+    );
+
+    window.location.href =
+      `mailto:eltonhuangyanqi@gmail.com?subject=${subject}&body=${body}`;
+  };
+  const openBookingPage = (serviceName = "") => {
+    setSelectedService(serviceName);
+    setPage("contact");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
+    
     <div className="app">
+{/*       
       <section className="hero">
             {/* <div>
               <h1>Bike Lover Workshop</h1>
               <p>Affordable bike repair, tune-up, and maintenance from my home workshop.</p>
               <p className="version">Version 2.0 - Deployed with GitHub Actions + Azure</p>
             </div> */}
-            <img src="/images/homepicture.JPG" alt="Bike Repair Logo" className="logo" />
+            {/* <img src="/images/homepicture.JPG" alt="Bike Repair Logo" className="logo" />
             <div className="nav-buttons">
               <button onClick={() => setPage("home")}><b> Services </b></button>
               <button onClick={() => setPage("about")}><b>About Me</b></button>
               <button onClick={() => setPage("ride")}><b>Social Ride</b></button>
             </div>
-          </section>
+          </section> */} 
+      <header className="site-header">
+        <div className="brand">
+          <span className="brand-name">Bike Lover Workshop</span>
+          <span className="brand-location">Ottawa Bicycle Service</span>
+        </div>
+
+        <nav className="main-nav">
+          <button onClick={() => setPage("home")}>Services</button>
+          <button onClick={() => setPage("about")}>About Me</button>
+          <button onClick={() => setPage("contact")}>Contact</button>
+          <button onClick={() => setPage("blog")}>Blog</button>
+        </nav>
+      </header>
+
       {page === "home" && (
-        <>
-          <section className="container">
-            <h2>Service Pricing</h2>
-            <div className="pricing-grid">
-              {/* {services.map((service) => (
-                <div className="card" key={service.name}>
-                  <div className="card-header">
-                    <h3>{service.name}</h3>
-                    <span>{service.price}</span>
-                  </div>
-                  <p>{service.description}</p>
-                </div>
-              ))} */}
-              {services.map((service) => (
-                <div
-                  key={service.name}
-                  className={`card ${service.featured ? "featured-card" : ""} ${
-                    service.flip && flippedCard === service.name ? "flipped" : ""
-                  }`}
-                  onClick={() => {
-                    if (service.flip) {
-                      setFlippedCard(
-                        flippedCard === service.name ? null : service.name
-                      );
-                    }
-                  }}
+      <>
+        <section className="workshop-hero">
+          <div className="hero-overlay">
+            <div className="hero-content">
+              <span className="hero-label">
+                BY APPOINTMENT ONLY — BOOK BEFORE DROPPING OFF
+              </span>
+
+              <h1>
+                Bikes serviced
+                <em> the right way</em>
+              </h1>
+
+              <p>
+                Friendly and affordable bicycle repair in Ottawa
+              </p>
+
+              <div className="hero-actions">
+                <button
+                  type="button"
+                  className="primary-action"
+                  onClick={() => openBookingPage()}
                 >
-                  <div className="card-inner">
+                  Book a Service →
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                    <div className="card-front">
-                      <div className="card-header">
-                        <h3>{service.name}</h3>
-                        <span>{service.price}</span>
-                      </div>
-                      {service.image && (
-                        <img
-                          src={service.image}
-                          alt={service.name}
-                          className="service-image"
-                        />
-                      )}
+        <section className="info-strip">
+          <article>
+            <span className="info-icon">⌖</span>
 
-                      <p>{service.description}</p>
+            <div>
+              <h3>Riverside South, Ottawa, Ontario</h3>
+              <p>
+                Serving Ottawa and surrounding communities by appointment.
+              </p>
+            </div>
+          </article>
 
-                      {service.flip && (
-                        <div className="details-link">
-                          <p>Click for Details →</p>
-                        </div>
-                      )}
-                    </div>
+          <article>
+            <span className="info-icon">◷</span>
 
-                    <div className="card-back">
-                      <h3>{service.name}</h3>
+            <div>
+              <h3>Turnaround Time</h3>
+              <p>
+                Most standard services are completed within 2–5 business days.
+              </p>
+            </div>
+          </article>
 
-                      <ul>
-                        {service.details?.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
+          <article>
+            <span className="info-icon">$</span>
 
+            <div>
+              <h3>Transparent Pricing</h3>
+              <p>
+                You will be contacted before any additional work begins.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <main>
+          <section className="packages-section">
+            <p className="section-kicker">SERVICE PACKAGES — 2026</p>
+
+            <h2>Service Packages</h2>
+
+            <p className="section-intro">
+              Choose a package based on how much care your bike currently needs.
+            </p>
+
+            <div className="package-grid">
+              {featuredServices.map((service, index) => (
+                <article className="package-card" key={service.name}>
+                  <div className="package-top">
+                    <span className="package-level">
+                      {index === 0 ? "ESSENTIAL SERVICE" : "COMPLETE SERVICE"}
+                    </span>
+
+                    {index ===0 && (
+                      <span className="popular-label">
+                        MOST POPULAR
+                      </span>
+                    )}
                   </div>
+
+                  {service.image && (
+                    <img
+                      src={service.image}
+                      alt={service.name}
+                      className="package-image"
+                    />
+                  )}
+
+                  <div className="package-title-row">
+                    <h3>{service.name}</h3>
+                    <strong>{service.price}</strong>
+                  </div>
+
+                  <p>{service.description}</p>
+
+                  <ul>
+                    {service.details?.map((detail) => (
+                      <li key={detail}>✓ {detail}</li>
+                    ))}
+                  </ul>
+
+                  <a
+                    type="button"
+                    className="package-book-link"
+                    onClick={() => openBookingPage(service.name)}
+                  >
+                    Book this service →
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="individual-services">
+            <div className="service-heading">
+              <div>
+                <p className="section-kicker">
+                  INDIVIDUAL SERVICES
+                </p>
+
+                <h2>Just need one thing done?</h2>
+              </div>
+
+              <a href="#booking">Request a service →</a>
+            </div>
+
+            <div className="service-list">
+              {miniServices.map((service) => (
+                <div className="service-row" key={service.name}>
+                  <div>
+                    <h3>{service.name}</h3>
+                    <p>{service.description}</p>
+                  </div>
+
+                  <strong>{service.price}</strong>
                 </div>
               ))}
             </div>
           </section>
-          <section className="booking-section">
 
-            <h2>Book a Repair</h2>
+          <section className="process-section">
+            <p className="section-kicker">HOW IT WORKS</p>
+
+            <h2>Book, drop off, ride again.</h2>
+
+            <div className="process-grid">
+              <article>
+                <span>01</span>
+                <h3>Send a Request</h3>
+                <p>
+                  Tell me about your bike, the issue, and your preferred date.
+                </p>
+              </article>
+
+              <article>
+                <span>02</span>
+                <h3>Confirm the Service</h3>
+                <p>
+                  I will confirm the service, estimated cost, and drop-off time.
+                </p>
+              </article>
+
+              <article>
+                <span>03</span>
+                <h3>Repair and Updates</h3>
+                <p>
+                  I complete the work and contact you about unexpected findings.
+                </p>
+              </article>
+
+              <article>
+                <span>04</span>
+                <h3>Pick Up and Ride</h3>
+                <p>
+                  Collect your bike and get back on the road.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section className="booking-area" id="booking">
+            <p className="section-kicker">READY TO BOOK?</p>
+
+            <h2>Book a bicycle service.</h2>
 
             <p>
-              Need help with your bike?
-              Click below to send me a repair request.
+              Include your bike type, requested service, preferred date,
+              and a short description of the issue.
             </p>
 
             <a
-              className="book-button"
-              href="mailto:eltonhuangyanqi@gmail.com?subject=Bike Repair Booking Request&body=Hi Elton,%0D%0A%0D%0AI would like to book a repair.%0D%0A%0D%0AName:%0D%0APhone:%0D%0ABike:%0D%0AService:%0D%0APreferred Date:%0D%0AProblem Description:"
+              className="booking-button"
+              onClick={() => openBookingPage()}
             >
-              📩 Book a Repair
+              Send a Booking Request →
             </a>
-
           </section>
-        </>
-      )}
+        </main>
+      </>
+    )}
 
       {page === "about" && (
         <section className="container page">
@@ -197,10 +382,225 @@ function App() {
         </section>
       )}
 
-      {page === "ride" && (
+      {page === "contact" && (
+        <main className="contact-page">
+          <section className="contact-hero">
+            <div className="contact-hero-content">
+              <p className="contact-kicker">GET IN TOUCH</p>
+
+              <h1>
+                I’d love to hear
+                <em> from you.</em>
+              </h1>
+
+              <p className="contact-introduction">
+                Have a question about a repair, service package, or bicycle issue?
+                Send me a message and I will respond personally.
+              </p>
+            </div>
+
+            <div className="contact-rings" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </section>
+
+          <section className="contact-info-strip">
+            <article>
+              <div className="contact-info-icon">✉</div>
+
+              <div>
+                <small>RESPONSE TIME</small>
+                <h3>Usually within 2 business days</h3>
+              </div>
+            </article>
+
+            <article>
+              <div className="contact-info-icon">⌖</div>
+
+              <div>
+                <small>BASED IN</small>
+                <h3>Riverside South, Ottawa, Ontario, Canada</h3>
+              </div>
+            </article>
+          </section>
+{/* 
+          <section className="map-section">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d33655.318252311255!2d-75.71544210223934!3d45.27248331298931!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccde31762c5d007%3A0x96cb3e9dd2362d4d!2s1078%20Lunar%20Glow%20Cres%2C%20Ottawa%2C%20ON%20K4M%200J8!5e0!3m2!1sen!2sca!4v1785428139305!5m2!1sen!2sca"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Bike Lover Workshop Location"
+            />
+          </section> */}
+
+
+          
+          <section className="contact-content">
+            <div className="contact-form-column">
+              <p className="section-kicker">CONTACT FORM</p>
+
+              <h2>
+                Send me <em>a message.</em>
+              </h2>
+
+              <p className="contact-form-intro">
+                Tell me about your bicycle and the help you need. Please include
+                as much information as possible so I can provide a useful response.
+              </p>
+
+              <form className="contact-form" onSubmit={handleContactSubmit}>
+                <div className="contact-name-row">
+                  <label>
+                    <span>First name</span>
+                    <input
+                      type="text"
+                      name="firstName"
+                      placeholder="First name"
+                      required
+                    />
+                  </label>
+
+                  <label>
+                    <span>Last name</span>
+                    <input
+                      type="text"
+                      name="lastName"
+                      placeholder="Last name"
+                      required
+                    />
+                  </label>
+                </div>
+
+                <label>
+                  <span>Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </label>
+
+                <label>
+                  <span>Phone number</span>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Optional"
+                  />
+                </label>
+
+                <div className="contact-name-row">
+                  <label>
+                    <span>Bike type</span>
+
+                    <select name="bikeType" defaultValue="">
+                      <option value="" disabled>
+                        Select a bike type
+                      </option>
+                      <option>Road bike</option>
+                      <option>Mountain bike</option>
+                      <option>Gravel bike</option>
+                      <option>Hybrid bike</option>
+                      <option>Commuter bike</option>
+                      <option>Kids bike</option>
+                      <option>Other</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    <span>Service</span>
+
+                    <select name="service" defaultValue="">
+                      <option value="" disabled>
+                        Select a service
+                      </option>
+                      <option>Basic Tune-Up</option>
+                      <option>Advanced Tune-Up</option>
+                      <option>Hydraulic Bleed</option>
+                      <option>Wheel Truing</option>
+                      <option>Housing Replacement</option>
+                      <option>Brake Adjustment</option>
+                      <option>Gear Adjustment</option>
+                      <option>Flat Repair</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </label>
+                </div>
+
+                <label>
+                  <span>How can I help?</span>
+                  <textarea
+                    name="message"
+                    rows="8"
+                    placeholder="Describe the bicycle, the problem, and your preferred appointment date."
+                    required
+                  />
+                </label>
+
+                <button type="submit" className="contact-submit">
+                  Prepare Email →
+                </button>
+
+                <p className="contact-form-note">
+                  Submitting this form opens your email application. Review the
+                  message and press Send to deliver it to Elton.
+                </p>
+              </form>
+            </div>
+
+            <aside className="contact-sidebar">
+              <article className="contact-help-card">
+                <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75508.73327202899!2d-75.74061577053183!3d45.3062017305332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccde31762c5d007%3A0x96cb3e9dd2362d4d!2s1078%20Lunar%20Glow%20Cres%2C%20Ottawa%2C%20ON%20K4M%200J8!5e0!3m2!1sen!2sca!4v1785429105173!5m2!1sen!2sca"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Bike Lover Workshop Location"
+            />
+              </article>
+              <article className="contact-help-card">
+                <small>APPOINTMENTS</small>
+                <h3>Ready to book a repair?</h3>
+                <p>
+                  Include your bicycle type, requested service, preferred date,
+                  and a short description of the issue.
+                </p>
+                <a href="mailto:eltonhuangyanqi@gmail.com">
+                  Email directly →
+                </a>
+              </article>
+
+              <article className="contact-help-card">
+                <small>PRICING</small>
+                <h3>Not sure which service you need?</h3>
+                <p>
+                  Describe the symptoms and I can recommend the most suitable
+                  service before you drop off the bike.
+                </p>
+                <a type="button" onClick={() => setPage("home")}>
+                  View service pricing →
+                </a>
+              </article>
+
+              
+            </aside>
+          </section>
+        </main>
+      )}
+      {page === "blog" && (
         <section className="container page">
-          <h2>Nearby Social Ride</h2>
-          <p>
+          <h2>Coming soon....</h2>
+          {/* <p>
             I would like to create a friendly local cycling community for casual group rides.
           </p>
           <div className="ride-card">
@@ -208,10 +608,10 @@ function App() {
             <p>Distance: 20–40 km</p>
             <p>Pace: Beginner friendly</p>
             <p>Focus: Safety, fun, and meeting local riders</p>
-          </div>
+          </div> */}
         </section>
       )}
-
+      
       <footer>
         <p>© 2026 Elton's Bike Lover Workshop </p>
       </footer>
