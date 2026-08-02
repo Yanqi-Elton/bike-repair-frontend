@@ -134,7 +134,8 @@ img {
 
 .workshop-hero {
   min-height: 620px;
-  background-image: url("../public/images/homepicture.JPG");
+  /* background-image: url("../public/images/homepicture.JPG"); */
+  background-image: url("../public/images/homesetup1.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -422,64 +423,141 @@ img {
 }
 
 /* =========================================
-   Individual services
+   Individual service price list
 ========================================= */
 
 .individual-services {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 100px max(4vw, 28px);
+
+  display: grid;
+  grid-template-columns: minmax(300px, 0.7fr) minmax(600px, 1.5fr);
+  gap: clamp(60px, 8vw, 140px);
+  align-items: start;
+
   border-top: 1px solid var(--line);
 }
 
 .service-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 30px;
-  margin-bottom: 35px;
+  display: block;
+  margin: 0;
 }
 
-.service-heading a,
-.service-heading button {
-  color: var(--gold-dark);
-  font-weight: 800;
-  text-decoration: none;
+.service-heading h2 {
+  max-width: 520px;
+  margin: 16px 0 22px;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 5vw, 76px);
+  line-height: 0.96;
+}
+
+.service-heading h2 em {
+  display: block;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.service-heading-description {
+  max-width: 520px;
+  margin: 0;
+
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 .service-list {
-  border-top: 1px solid #d6d6d6;
+  border: 1px solid var(--gold-border);
+  background: var(--surface);
 }
 
 .service-row {
+  min-height: 66px;
+  padding: 14px 20px;
+
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 30px;
-  padding: 25px 0;
-  border-bottom: 1px solid #d6d6d6;
+
+  border-bottom: 1px solid #e7e3d7;
+}
+
+.service-row:last-child {
+  border-bottom: 0;
+}
+
+.service-row-text {
+  min-width: 0;
 }
 
 .service-row h3 {
-  margin: 0 0 8px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 23px;
+  margin: 0 0 4px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .service-row p {
   margin: 0;
+
   color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .service-row strong {
+  flex: 0 0 auto;
+
   color: var(--gold-dark);
-  font-size: 22px;
+  font-size: 14px;
+  font-weight: 800;
   white-space: nowrap;
 }
 
-.service-row-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
+.service-row:hover {
+  background: var(--gold-light);
+}
+@media (max-width: 900px) {
+  .individual-services {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .service-heading h2 {
+    max-width: 650px;
+  }
 }
 
+@media (max-width: 600px) {
+  .individual-services {
+    padding: 70px 20px;
+  }
+
+  .service-heading h2 {
+    font-size: 48px;
+  }
+
+  .service-row {
+    min-height: 62px;
+    padding: 13px 15px;
+  }
+
+  .service-row h3 {
+    font-size: 14px;
+  }
+
+  .service-row p {
+    font-size: 11px;
+  }
+
+  .service-row strong {
+    font-size: 13px;
+  }
+}
 /* =========================================
    Process section
 ========================================= */

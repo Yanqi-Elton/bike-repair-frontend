@@ -10,7 +10,8 @@ function App() {
     price: "$50",
     flip: true,
     featured: true,
-    image: "/images/tuneup1.jpg",
+    // image: "/images/tuneup1.jpg",
+    image: "/images/tuneup3.jpg",
     description: "Safety check, brake and gear adjustment.",
     details: [
       "Brake check and adjustment",
@@ -28,7 +29,7 @@ function App() {
     price: "$100",
     flip: true,
     featured: true,
-    image: "/images/tuneup.jpg",
+    image: "/images/tuneup4.PNG",
     description: "Full check, brake and gear adjustment, drivetrain cleaning, offer pickup service.",
     details: [
       "Everthing in Basic Tune-Up, plus:",
@@ -44,8 +45,9 @@ function App() {
     { name: "Truing Wheel", price: "$20", flip: false,description: "Make sure the wheel is properly aligned." },
     { name: "Housing Replacement", price: "$20", flip: false,description: "Changing per brake housing or derailleur housing." },
     { name: "Brake Adjustment", price: "$10", flip: false,description: "Adjust front or rear brakes." },
-    { name: "Gear Adjustment", price: "$15", flip: false, description: "Tune shifting for smoother riding." },
+    { name: "Gear Adjustment", price: "$15", flip: false, description: "Tune shifting for smoother riding， truing hanger and index gears." },
     { name: "Flat Repair", price: "$10", flip: false, description: "Replace new inner tube or inspect a flat tire." },
+    
   ];
   const featuredServices = services.filter((service) => service.featured);
   const miniServices = services.filter((service) => !service.featured);
@@ -244,7 +246,7 @@ function App() {
             </div>
           </section>
 
-          <section className="individual-services">
+          {/* <section className="individual-services">
             <div className="service-heading">
               <div>
                 <p className="section-kicker">
@@ -269,7 +271,35 @@ function App() {
                 </div>
               ))}
             </div>
-          </section>
+          </section> */}
+          <section className="individual-services">
+          <div className="service-heading">
+            <div>
+              <p className="section-kicker">INDIVIDUAL SERVICES</p>
+              <h2>
+                Just need <em>one thing done?</em>
+              </h2>
+
+              <p className="service-heading-description">
+                Individual services are available on their own or as additions to a
+                tune-up package.
+              </p>
+            </div>
+          </div>
+
+          <div className="service-list">
+            {miniServices.map((service) => (
+              <div className="service-row" key={service.name}>
+                <div className="service-row-text">
+                  <h3>{service.name}</h3>
+                  <p>{service.description}</p>
+                </div>
+
+                <strong>{service.price}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
 
           <section className="process-section">
             <p className="section-kicker">HOW IT WORKS</p>
