@@ -110,8 +110,16 @@ function App() {
           </section> */} 
       <header className="site-header">
         <div className="brand">
-          <span className="brand-name">Bike Lover Workshop</span>
-          <span className="brand-location">Ottawa Bicycle Service</span>
+          <img
+            src="/images/logo.png"
+            alt="Bike Lover Workshop Logo"
+            className="brand-logo"
+          />
+
+          <div className="brand-text">
+            <span className="brand-name">Bike Lover Workshop</span>
+            <span className="brand-location">Ottawa Bicycle Service</span>
+          </div>
         </div>
 
         <nav className="main-nav">
@@ -132,8 +140,8 @@ function App() {
               </span>
 
               <h1>
-                Bikes serviced
-                <em> the right way</em>
+                Your Bike
+                <em> My Care</em>
               </h1>
 
               <p>
