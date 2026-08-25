@@ -76,30 +76,49 @@ img {
 ========================================= */
 
 .site-header {
-  min-height: 88px;
-  padding: 18px 6vw;
+  min-height: 105px;
+  padding: 8px 6vw;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+
   background: var(--surface);
   border-bottom: 1px solid #e5e7eb;
 }
 
+/* Logo + business name */
 .brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+/* IMPORTANT: controls panda logo size */
+.brand-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brand-text {
   display: flex;
   flex-direction: column;
 }
 
 .brand-name {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 700;
+  line-height: 1.05;
   color: var(--ink);
 }
 
 .brand-location {
-  margin-top: 3px;
+  margin-top: 5px;
   color: var(--gold-dark);
   font-size: 12px;
   letter-spacing: 1.3px;
