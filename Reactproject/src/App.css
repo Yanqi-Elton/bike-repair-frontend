@@ -1,15 +1,17 @@
 :root {
-  --ink: #171b21;
-  --ink-soft: #292d32;
-  --paper: #f7f6f1;
+  --ink: #111e2a;
+  --ink-soft: #26313a;
+
+  --paper: #f8f7f3;
   --surface: #ffffff;
   --muted: #68707a;
   --line: #dedede;
 
-  --gold: #a8993b;
-  --gold-dark: #85762c;
-  --gold-light: #f5f2e4;
-  --gold-border: #ddd3a3;
+  /* Bike Lover brand red */
+  --gold: #C94A43;
+  --gold-dark: #A83B36;
+  --gold-light: #F8EAE8;
+  --gold-border: #E7BBB7;
 
   --shadow-sm: 0 10px 28px rgba(20, 22, 25, 0.08);
   --shadow-md: 0 16px 40px rgba(20, 22, 25, 0.12);
@@ -1022,16 +1024,65 @@ img {
    Footer
 ========================================= */
 
-footer {
-  padding: 28px 24px;
-  border-top: 1px solid #e5e7eb;
-  background: var(--surface);
-  color: #6b7280;
-  text-align: center;
+.site-footer {
+  background: #111e2a;
+  color: #ffffff;
+  padding: 45px 6vw 20px;
 }
 
-footer p {
-  margin: 0;
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-brand h3 {
+  margin: 0 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+}
+
+.footer-brand p,
+.footer-contact p {
+  margin: 6px 0;
+  color: #d5d8dc;
+}
+
+.footer-contact {
+  text-align: right;
+}
+
+.footer-contact a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  color: var(--gold);
+}
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: 30px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: #aeb5bc;
+  font-size: 14px;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-contact {
+    text-align: left;
+  }
 }
 
 /* =========================================

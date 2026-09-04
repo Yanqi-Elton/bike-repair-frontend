@@ -29,7 +29,7 @@ function App() {
     price: "$100",
     flip: true,
     featured: true,
-    image: "/images/tuneupclean.jpg",
+    image: "/images/tuneup4.PNG",
     description: "Full check, brake and gear adjustment, drivetrain cleaning, offer pickup service.",
     details: [
       "Everthing in Basic Tune-Up, plus:",
@@ -47,7 +47,8 @@ function App() {
     { name: "Brake Adjustment", price: "$10", flip: false,description: "Adjust front or rear brakes." },
     { name: "Gear Adjustment", price: "$15", flip: false, description: "Tune shifting for smoother riding， truing hanger and index gears." },
     { name: "Flat Repair", price: "$10", flip: false, description: "Replace new inner tube or inspect a flat tire." },
-    
+    { name: "Install Chain or Cassette", price: "$15", flip: false,description: "Install a new chain or cassette." },
+    { name: "General Labor", price: "$60/hour", flip: false, description: "Hourly rate for general labor." }
   ];
   const featuredServices = services.filter((service) => service.featured);
   const miniServices = services.filter((service) => !service.featured);
@@ -84,7 +85,7 @@ function App() {
     );
 
     window.location.href =
-      `mailto:eltonhuangyanqi@gmail.com?subject=${subject}&body=${body}`;
+      `mailto:bikeloverworkshop@gmail.com?subject=${subject}&body=${body}`;
   };
   const openBookingPage = (serviceName = "") => {
     setSelectedService(serviceName);
@@ -596,7 +597,7 @@ function App() {
             <aside className="contact-sidebar">
               <article className="contact-help-card">
                 <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75508.73327202899!2d-75.74061577053183!3d45.3062017305332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccde31762c5d007%3A0x96cb3e9dd2362d4d!2s1078%20Lunar%20Glow%20Cres%2C%20Ottawa%2C%20ON%20K4M%200J8!5e0!3m2!1sen!2sca!4v1785429105173!5m2!1sen!2sca"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d63562.3017792463!2d-75.71413466500533!3d45.246105993292645!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccde3a3e68a77d5%3A0x32642ebe14267b12!2sBikeLover!5e0!3m2!1sen!2sca!4v1788531291112!5m2!1sen!2sca"
               width="100%"
               height="450"
               style={{ border: 0 }}
@@ -613,7 +614,7 @@ function App() {
                   Include your bicycle type, requested service, preferred date,
                   and a short description of the issue.
                 </p>
-                <a href="mailto:eltonhuangyanqi@gmail.com">
+                <a href="mailto:bikeloverworkshop@gmail.com">
                   Email directly →
                 </a>
               </article>
@@ -650,8 +651,31 @@ function App() {
         </section>
       )}
       
-      <footer>
-        <p>© 2026 Elton's Bike Lover Workshop </p>
+      <footer className="site-footer">
+        <div className="footer-content">
+          <div className="footer-brand">
+            <h3>Bike Lover Workshop</h3>
+            <p>Local bicycle repair in Riverside South, Ottawa.</p>
+          </div>
+
+          <div className="footer-contact">
+            <p>Riverside South, Ottawa, Ontario</p>
+
+            <p>
+              <a href="tel:+12898925980">289-892-5980</a>
+              <span> • </span>
+              <a href="mailto:bikeloverworkshop@gmail.com">
+                bikeloverworkshop@gmail.com
+              </a>
+            </p>
+
+            <p>Service by Appointment Only</p>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          © 2026 Bike Lover Workshop
+        </div>
       </footer>
     </div>
   );
