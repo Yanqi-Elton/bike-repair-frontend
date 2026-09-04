@@ -29,7 +29,7 @@ function App() {
     price: "$100",
     flip: true,
     featured: true,
-    image: "/images/tuneup4.png",
+    image: "/images/tuneupclean.jpg",
     description: "Full check, brake and gear adjustment, drivetrain cleaning, offer pickup service.",
     details: [
       "Everthing in Basic Tune-Up, plus:",
