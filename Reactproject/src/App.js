@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Routes,
   Route,
@@ -11,17 +11,35 @@ import BlogPage from "./pages/BlogPage";
 import FirstMobileRepair from "./pages/FirstMobileRepair";
 import FlatRepairCourse from "./pages/FlatRepairCourse";
 
+
 function App() {
   const [page, setPage] = useState("home");
   const [selectedService, setSelectedService] = useState("");
   const location = useLocation();
   const isBlogRoute = location.pathname.startsWith("/blog");
   const navigate = useNavigate();
+  const [scrollTarget, setScrollTarget] = useState(null);
   const goToPage = (pageName) => {
-  navigate("/");
-  setPage(pageName);
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
+    navigate("/");
+    setPage(pageName);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (page === "home" && scrollTarget) {
+      const element = document.getElementById(scrollTarget);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+
+        setScrollTarget(null);
+      }
+    }
+  }, [page, scrollTarget]);
+
   const services = [
     {
     name: "Basic Tune-Up",
@@ -227,7 +245,7 @@ function App() {
         </section>
 
         <main>
-          <section className="packages-section">
+          <section className="packages-section" id="pricing">
             <p className="section-kicker">SERVICE PACKAGES — 2026</p>
 
             <h2>Service Packages</h2>
@@ -655,7 +673,13 @@ function App() {
                   Describe the symptoms and I can recommend the most suitable
                   service before you drop off the bike.
                 </p>
-                <a type="button" onClick={() => setPage("home")}>
+                <a
+                  type="button"
+                  onClick={() => {
+                    setScrollTarget("pricing");
+                    setPage("home");
+                  }}
+                >
                   View service pricing →
                 </a>
               </article>
