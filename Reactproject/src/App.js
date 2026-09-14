@@ -1,9 +1,27 @@
 import "./App.css";
 import { useState } from "react";
+import {
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useNavigate
+} from "react-router-dom";
+import BlogPage from "./pages/BlogPage";
+import FirstMobileRepair from "./pages/FirstMobileRepair";
+import FlatRepairCourse from "./pages/FlatRepairCourse";
 
 function App() {
   const [page, setPage] = useState("home");
   const [selectedService, setSelectedService] = useState("");
+  const location = useLocation();
+  const isBlogRoute = location.pathname.startsWith("/blog");
+  const navigate = useNavigate();
+  const goToPage = (pageName) => {
+  navigate("/");
+  setPage(pageName);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
   const services = [
     {
     name: "Basic Tune-Up",
@@ -124,14 +142,25 @@ function App() {
         </div>
 
         <nav className="main-nav">
-          <button onClick={() => setPage("home")}>Services</button>
-          <button onClick={() => setPage("about")}>About Me</button>
-          <button onClick={() => setPage("contact")}>Contact</button>
-          <button onClick={() => setPage("blog")}>Blog</button>
+          <button onClick={() => goToPage("home")}>
+            Services
+          </button>
+
+          <button onClick={() => goToPage("about")}>
+            About Me
+          </button>
+
+          <button onClick={() => goToPage("contact")}>
+            Contact
+          </button>
+
+          <Link to="/blog" className="nav-link">
+            Blog
+          </Link>
         </nav>
       </header>
 
-      {page === "home" && (
+      {!isBlogRoute && page === "home" && (
       <>
         <section className="workshop-hero">
           <div className="hero-overlay">
@@ -371,7 +400,7 @@ function App() {
       </>
     )}
 
-      {page === "about" && (
+      {!isBlogRoute && page === "about" && (
         <section className="container page">
           
           <h2>About Me</h2>
@@ -421,7 +450,7 @@ function App() {
         </section>
       )}
 
-      {page === "contact" && (
+      {!isBlogRoute && page === "contact" && (
         <main className="contact-page">
           <section className="contact-hero">
             <div className="contact-hero-content">
@@ -636,21 +665,20 @@ function App() {
           </section>
         </main>
       )}
-      {page === "blog" && (
-        <section className="container page">
-          <h2>Coming soon....</h2>
-          {/* <p>
-            I would like to create a friendly local cycling community for casual group rides.
-          </p>
-          <div className="ride-card">
-            <h3>Weekend Easy Ride</h3>
-            <p>Distance: 20–40 km</p>
-            <p>Pace: Beginner friendly</p>
-            <p>Focus: Safety, fun, and meeting local riders</p>
-          </div> */}
-        </section>
-      )}
-      
+      <Routes>
+        <Route path="/blog" element={<BlogPage />} />
+
+        <Route
+          path="/blog/first-mobile-repair"
+          element={<FirstMobileRepair />}
+        />
+
+        <Route
+          path="/blog/roadside-flat-repair-course"
+          element={<FlatRepairCourse />}
+        />
+      </Routes>
+
       <footer className="site-footer">
         <div className="footer-content">
           <div className="footer-brand">
@@ -659,7 +687,7 @@ function App() {
           </div>
 
           <div className="footer-contact">
-            <p>Riverside South, Ottawa, Ontario</p>
+            <p>1078 Lunar Glow Cres, K4M 0J8, Riverside South, Ottawa, Ontario</p>
 
             <p>
               <a href="tel:+12898925980">289-892-5980</a>
