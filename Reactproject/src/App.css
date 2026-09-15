@@ -1457,7 +1457,7 @@ img {
 .main-nav .nav-link:visited {
   background: none;
   border: none;
-  padding: 8px 0;
+  padding: 10px 14px;
   color: var(--ink);
   font: inherit;
   font-weight: 600;
