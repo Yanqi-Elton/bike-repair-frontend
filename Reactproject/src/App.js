@@ -77,13 +77,17 @@ function App() {
     },
     // { name: "Advanced Tune-Up", price: "$100", description: "Full check, brake and gear adjustment, quick inspection." },
 
-    { name: "Hydraulic Bleed", price: "$30", flip: false, description: "Remove air bubbles from hydraulic brake line." },
-    { name: "Truing Wheel", price: "$20", flip: false,description: "Make sure the wheel is properly aligned." },
-    { name: "Housing Replacement", price: "$20", flip: false,description: "Changing per brake housing or derailleur housing." },
-    { name: "Brake Adjustment", price: "$10", flip: false,description: "Adjust front or rear brakes." },
-    { name: "Gear Adjustment", price: "$15", flip: false, description: "Tune shifting for smoother riding， truing hanger and index gears." },
+    { name: "Hydraulic Bleed (Per brake)", price: "$30", flip: false, description: "Remove air bubbles from hydraulic brake line." },
+    { name: "Truing Wheel (Major)", price: "$20", flip: false,description: "Truing wheel on the wheel truing stand, my best value service." },
+    { name: "Housing Replacement", price: "$20", flip: false,description: "Changing per brake housing or derailleur housing, parts and labor." },
+    { name: "Brake Adjustment", price: "$15", flip: false,description: "Adjust front and rear brakes." },
+    { name: "Gear Adjustment", price: "$15", flip: false, description: "Front derailleur or rear derailleur, truing hanger and index gears." },
     { name: "Flat Repair", price: "$10", flip: false, description: "Replace new inner tube or inspect a flat tire." },
     { name: "Install Chain or Cassette", price: "$15", flip: false,description: "Install a new chain or cassette." },
+    { name: "Chain Wipe, Clean & Lube", price: "$10", flip: false,description: "Wipe and clean the chain, then apply fresh chain lubricant while the chain remains on the bike." },
+    { name: "Crankset Installation", price: "$30", flip: false,description: "Remove and install a bicycle crankset." },
+    { name: "Bottom Bracket Installation", price: "$35", flip: false,description: "Remove and install a bicycle bottom bracket." },
+    { name: "Brake Pad Replacement", price: "$10 / brake", flip: false,description: "Replace brake pads only for V-brakes or disc brakes. Parts not included." },
     { name: "General Labor", price: "$60/hour", flip: false, description: "Hourly rate for general labor." }
   ];
   const featuredServices = services.filter((service) => service.featured);
