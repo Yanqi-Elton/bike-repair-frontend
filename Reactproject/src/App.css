@@ -443,140 +443,108 @@ img {
   color: var(--gold);
 }
 
-/* =========================================
-   Individual service price list
-========================================= */
+/* ============================= */
+/* Individual Service Categories */
+/* ============================= */
 
-.individual-services {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 100px max(4vw, 28px);
-
-  display: grid;
-  grid-template-columns: minmax(300px, 0.7fr) minmax(600px, 1.5fr);
-  gap: clamp(60px, 8vw, 140px);
-  align-items: start;
-
-  border-top: 1px solid var(--line);
+.service-category-list {
+  max-width: 1250px;
+  margin: 45px auto 0;
 }
 
-.service-heading {
-  display: block;
+.service-category {
+  margin-bottom: 36px;
+}
+
+.service-category-title {
   margin: 0;
-}
-
-.service-heading h2 {
-  max-width: 520px;
-  margin: 16px 0 22px;
-
+  padding: 17px 22px;
+  background: #f0eeea;
+  border-left: 4px solid var(--gold);
+  color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(48px, 5vw, 76px);
-  line-height: 0.96;
+  font-size: 24px;
+  font-weight: 700;
 }
 
-.service-heading h2 em {
-  display: block;
-  color: var(--gold);
-  font-weight: 500;
-}
-
-.service-heading-description {
-  max-width: 520px;
-  margin: 0;
-
-  color: var(--muted);
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-.service-list {
-  border: 1px solid var(--gold-border);
+.service-category-items {
   background: var(--surface);
+  border: 1px solid var(--line);
 }
 
-.service-row {
-  min-height: 66px;
-  padding: 14px 20px;
-
+.service-category-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 30px;
-
-  border-bottom: 1px solid #e7e3d7;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s ease;
 }
 
-.service-row:last-child {
-  border-bottom: 0;
+.service-category-row:last-child {
+  border-bottom: none;
 }
 
-.service-row-text {
+.service-category-row:hover {
+  background: var(--gold-light);
+}
+
+.service-category-info {
+  flex: 1;
   min-width: 0;
 }
 
-.service-row h3 {
-  margin: 0 0 4px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: 500;
+.service-category-info h4 {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
 }
 
-.service-row p {
+.service-category-info p {
   margin: 0;
-
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-.service-row strong {
-  flex: 0 0 auto;
-
-  color: var(--gold-dark);
   font-size: 14px;
-  font-weight: 800;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Consistent price styling */
+.service-category-row .service-category-price {
+  min-width: 110px;
+  color: var(--gold-dark);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: right;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
-.service-row:hover {
-  background: var(--gold-light);
-}
-@media (max-width: 900px) {
-  .individual-services {
-    grid-template-columns: 1fr;
-    gap: 45px;
+/* Mobile */
+@media (max-width: 800px) {
+  .service-category-title {
+    font-size: 21px;
+    padding: 15px;
   }
 
-  .service-heading h2 {
-    max-width: 650px;
-  }
-}
-
-@media (max-width: 600px) {
-  .individual-services {
-    padding: 70px 20px;
+  .service-category-row {
+    gap: 15px;
+    padding: 18px 15px;
   }
 
-  .service-heading h2 {
-    font-size: 48px;
+  .service-category-info h4 {
+    font-size: 15px;
   }
 
-  .service-row {
-    min-height: 62px;
-    padding: 13px 15px;
-  }
-
-  .service-row h3 {
-    font-size: 14px;
-  }
-
-  .service-row p {
-    font-size: 11px;
-  }
-
-  .service-row strong {
+  .service-category-info p {
     font-size: 13px;
+  }
+
+  .service-category-row .service-category-price {
+    min-width: 75px;
+    font-size: 16px;
   }
 }
 /* =========================================
@@ -1507,4 +1475,131 @@ img {
   .blog-back-button {
     margin-bottom: 24px;
   }
+}
+
+
+/* Best Value Badge */
+.service-name-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.service-name-row h4 {
+  margin: 0;
+}
+
+.best-value-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  background: var(--gold-light);
+  color: var(--gold-dark);
+  border: 1px solid var(--gold-border);
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+}
+
+
+/* =================================== */
+/* Compact Mobile Information Strip    */
+/* =================================== */
+
+@media (max-width: 700px) {
+
+  .info-strip {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .info-strip article {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: auto;
+    padding: 14px 18px;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .info-icon {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    font-size: 15px;
+  }
+
+  .info-strip h3 {
+    margin: 0 0 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .info-strip p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .info-strip article:last-child {
+    border-bottom: none;
+  }
+
+}
+
+
+/* =================================== */
+/* Compact How It Works - Mobile Only   */
+/* =================================== */
+
+@media (max-width: 700px) {
+
+  .process-section {
+    padding: 40px 20px;
+  }
+
+  .process-section h2 {
+    font-size: 32px;
+    line-height: 1.15;
+    margin: 8px 0 20px;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 20px;
+  }
+
+  .process-grid article {
+    padding: 16px 0;
+    border-top: 1px solid #444c55;
+  }
+
+  .process-grid span {
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .process-grid h3 {
+    margin: 8px 0;
+    font-size: 19px;
+    line-height: 1.3;
+  }
+
+  .process-grid p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
 }
