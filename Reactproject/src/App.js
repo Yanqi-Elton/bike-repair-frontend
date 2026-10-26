@@ -50,6 +50,7 @@ function App() {
     image: "/images/tuneup3.jpg",
     description: "Safety check, brake and gear adjustment.",
     details: [
+      "Truing wheels on the wheel truing stand",
       "Brake check and adjustment",
       "Gear indexing",
       "Tire pressure check",
@@ -78,20 +79,85 @@ function App() {
     // { name: "Advanced Tune-Up", price: "$100", description: "Full check, brake and gear adjustment, quick inspection." },
 
     { name: "Hydraulic Bleed (Per brake)", price: "$30", flip: false, description: "Remove air bubbles from hydraulic brake line." },
-    { name: "Truing Wheel (Major)", price: "$20", flip: false,description: "Truing wheel on the wheel truing stand, my best value service." },
-    { name: "Housing Replacement", price: "$20", flip: false,description: "Changing per brake housing or derailleur housing, parts and labor." },
+    { name: "Hydraulic Brake Piston Cleaning (Bleed Add-On)", price: "$10 / brake", flip: false, description: "Clean exposed caliper pistons, apply manufacturer-approved lubricant, and check piston movement. Available as an add-on to hydraulic brake bleeding." },
     { name: "Brake Adjustment", price: "$15", flip: false,description: "Adjust front and rear brakes." },
+    { name: "Brake Pad Replacement", price: "$10 / brake", flip: false,description: "Replace brake pads only for V-brakes or disc brakes. Parts not included." },
+    { name: "Disc Brake Rotor Installation / Replacement", price: "$15", flip: false, description: "Install or replace a disc brake rotor, including proper alignment and bolt torque." },
+
+
     { name: "Gear Adjustment", price: "$15", flip: false, description: "Front derailleur or rear derailleur, truing hanger and index gears." },
-    { name: "Flat Repair", price: "$10", flip: false, description: "Replace new inner tube or inspect a flat tire." },
-    { name: "Install Chain or Cassette", price: "$15", flip: false,description: "Install a new chain or cassette." },
+    { name: "Install or Replace Chain", price: "$15", flip: false,description: "Install a new chain measure the length." },
+    { name: "Install or Replace Cassette or Freewheel", price: "$15", flip: false,description: "Install a new cassette or Freewheel." },
     { name: "Chain Wipe, Clean & Lube", price: "$10", flip: false,description: "Wipe and clean the chain, then apply fresh chain lubricant while the chain remains on the bike." },
     { name: "Crankset Installation", price: "$30", flip: false,description: "Remove and install a bicycle crankset." },
     { name: "Bottom Bracket Installation", price: "$35", flip: false,description: "Remove and install a bicycle bottom bracket." },
-    { name: "Brake Pad Replacement", price: "$10 / brake", flip: false,description: "Replace brake pads only for V-brakes or disc brakes. Parts not included." },
+
+
+    { name: "Truing Wheel (Major)", price: "$25", flip: false, bestValue: true, description: "True a bicycle wheel using a professional truing stand to improve wheel alignment." },
+    { name: "Flat Repair", price: "$10", flip: false, bestValue: true, description: "Repair a flat tire or replace an inner tube. Replacement parts not included." },
+    { name: "E-Bike Tire / Tube Installation (Non-Hub-Motor)", price: "$30", flip: false, description: "Remove and reinstall an e-bike wheel to replace a tire or inner tube. Parts not included." },
+    { name: "E-Bike Tire / Tube Installation (Hub-Motor)", price: "$40", flip: false, description: "Remove and reinstall an e-bike wheel to replace a tire or inner tube, disconnect and reconnect the wire. Parts not included." },
+    { name: "Wheel Hub Cone Adjustment", price: "$15", flip: false, description: "Adjust front or rear wheel hub cones to reduce bearing play and ensure smooth wheel rotation." },
+    { name: "Wheel Building (Front or Rear)", price: "$60 / wheel", flip: false, description: "Build a bicycle wheel from a hub, rim, and spokes, including spoke tensioning, wheel truing, and final inspection. Parts not included." },
+    { name: "Spoke Replacement & Wheel Truing", price: "$35 / wheel", flip: false, description: "Replace a broken or damaged spoke, including spoke tension adjustment and wheel truing. Replacement spokes and nipples not included." },
+
+
+    { name: "Housing Replacement", price: "$20", flip: false,description: "Changing per brake housing or derailleur housing, basic cable and parts and labor." },
+    
+    
+    { name: "New Bicycle Assembly (Non-E-Bike)", price: "$100", flip: false, description: "Assemble a new bicycle partially assembled in a box, including brake and gear adjustments and a final safety check." },
     { name: "General Labor", price: "$60/hour", flip: false, description: "Hourly rate for general labor." }
   ];
   const featuredServices = services.filter((service) => service.featured);
   const miniServices = services.filter((service) => !service.featured);
+  const serviceCategories = [
+  {
+    name: "Brakes",
+    services: [
+      "Hydraulic Bleed (Per brake)",
+      "Hydraulic Brake Piston Cleaning (Bleed Add-On)",
+      "Brake Adjustment",
+      "Brake Pad Replacement",
+      "Disc Brake Rotor Installation / Replacement",
+    ],
+  },
+  {
+    name: "Drivetrain",
+    services: [
+      "Gear Adjustment",
+      "Install or Replace Chain",
+      "Install or Replace Cassette or Freewheel",
+      "Chain Wipe, Clean & Lube",
+      "Crankset Installation",
+      "Bottom Bracket Installation",
+    ],
+  },
+  {
+    name: "Wheels",
+    services: [
+      "Truing Wheel (Major)",
+      "Wheel Building (Front or Rear)",
+      "Spoke Replacement & Wheel Truing",
+      "Flat Repair",
+      "E-Bike Tire / Tube Installation (Non-Hub-Motor)",
+      "E-Bike Tire / Tube Installation (Hub-Motor)",
+      "Wheel Hub Cone Adjustment",
+    ],
+  },
+  {
+    name: "Cables & Housing",
+    services: [
+      "Housing Replacement",
+    ],
+  },
+  {
+    name: "Other Services",
+    services: [
+      "New Bicycle Assembly (Non-E-Bike)",
+      "General Labor",
+    ],
+  },
+];
   const handleContactSubmit = (event) => {
   event.preventDefault();
 
@@ -332,34 +398,66 @@ function App() {
               ))}
             </div>
           </section> */}
-          <section className="individual-services">
-          <div className="service-heading">
-            <div>
-              <p className="section-kicker">INDIVIDUAL SERVICES</p>
-              <h2>
-                Just need <em>one thing done?</em>
-              </h2>
+          <section className="individual-services" id="individual-services">
+            <div className="service-heading">
+              <div>
+                <p className="section-kicker">INDIVIDUAL SERVICES</p>
 
-              <p className="service-heading-description">
-                Individual services are available on their own or as additions to a
-                tune-up package.
-              </p>
-            </div>
-          </div>
+                <h2>
+                  Just need <em>one thing done?</em>
+                </h2>
 
-          <div className="service-list">
-            {miniServices.map((service) => (
-              <div className="service-row" key={service.name}>
-                <div className="service-row-text">
-                  <h3>{service.name}</h3>
-                  <p>{service.description}</p>
-                </div>
-
-                <strong>{service.price}</strong>
+                <p className="service-heading-description">
+                  Individual services are available on their own or as
+                  additions to a tune-up package.
+                </p>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+
+            <div className="service-category-list">
+              {serviceCategories.map((category) => {
+                const categoryServices = category.services
+                  .map((name) =>
+                    miniServices.find((service) => service.name === name)
+                  )
+                  .filter(Boolean);
+
+                if (categoryServices.length === 0) return null;
+
+                return (
+                  <div className="service-category" key={category.name}>
+                    <h3 className="service-category-title">
+                      {category.name}
+                    </h3>
+
+                    <div className="service-category-items">
+                      {categoryServices.map((service) => (
+                        <div className="service-category-row" key={service.name}>
+                          <div className="service-category-info">
+                            <div className="service-name-row">
+                              <h4>{service.name}</h4>
+
+                              {service.bestValue && (
+                                <span className="best-value-badge">
+                                  ★ BEST VALUE
+                                </span>
+                              )}
+                            </div>
+
+                            <p>{service.description}</p>
+                          </div>
+
+                          <strong className="service-category-price">
+                            {service.price}
+                          </strong>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
 
           <section className="process-section">
             <p className="section-kicker">HOW IT WORKS</p>
